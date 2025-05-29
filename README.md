@@ -7,5 +7,5 @@ sudo apt install -y fuse wwget curl
 ````
 # Luego--Then:
 ````
-curl -sSL 
+curl -sSL https://raw.githubusercontent.com/PIBSAS/freecad/main/pi.sh | bash 
 ````
