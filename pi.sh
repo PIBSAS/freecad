@@ -32,6 +32,9 @@ echo "Downloading FreeCAD AppImage..."
 wget -q --show-progress "https://github.com$APPIMAGE_URL" -O ~/.local/bin/FreeCAD_$VERSION.AppImage
 chmod +x ~/.local/bin/FreeCAD_$VERSION.AppImage
 
+# Create versionless symlink
+ln -sf ~/.local/bin/FreeCAD_$VERSION.AppImage ~/.local/bin/freecad
+
 # Download icon
 echo "Downloading FreeCAD icon..."
 ICON_URL="https://github.com/FreeCAD/FPA/raw/main/images/logos/FreeCAD-symbol.png"
@@ -45,10 +48,10 @@ echo "Creating desktop entry..."
 cat > ~/.local/share/applications/freecad.desktop <<EOL
 [Desktop Entry]
 Name=FreeCAD
-Exec=$HOME/.local/bin/FreeCAD_$VERSION.AppImage
+Exec=$HOME/.local/bin/freecad
 Comment=3D CAD Modeler
 Terminal=false
-Icon=$HOME/.local/share/icons/freecad.png
+Icon=freecad
 Type=Application
 Categories=Graphics;Science;Engineering;
 EOL
@@ -61,9 +64,9 @@ if ! grep -qxF 'export PATH="$HOME/.local/bin:$PATH"' ~/.bashrc; then
 fi
 
 echo -e "\n✅ Installation successful!"
-echo "FreeCAD $VERSION has been installed to:"
+echo "FreeCAD $VERSION installed to:"
 echo "  ~/.local/bin/FreeCAD_$VERSION.AppImage"
 echo -e "\nYou can now:"
 echo "1. Launch from your application menu"
-echo "2. Run from terminal with: FreeCAD_$VERSION.AppImage"
-echo "3. Or simply: FreeCAD (after restarting your terminal)"
+echo "2. Run from terminal with: freecad"
+echo "3. Or using full version: FreeCAD_$VERSION.AppImage"
